@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoia2FsaW1hciIsImEiOiJjajdhdmNtMjkwbGZlMzJyc2RvNmhjZXd3In0.tBIY2rRDHYt1VYeGTOH98g';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+    center: [
+      -43.154296875,
+      -19.642587534013032
+    ],
+    zoom: 3 // starting zoom
+});
+map.on("load", () => {
+  map.addSource('uab', {
+    "type": "geojson",
+      // "data": "https://gist.githubusercontent.com/kalimar/87cdada41eab677bf6b5a2e7a6065e75/raw/8ba079456adb4b10bfca87ec3bed403179e3cee8/map.geojson"
+    "data": "http://localhost:8080/data.json"
+  });
+  map.addLayer({
+    "id": "ipes",
+    "source": "uab",
+    "type": "circle",
+    "paint": {
+      "circle-color": "blue",
+      "circle-radius": 10
+    },
+    "filter": ["==", "type", "ipes"]
+  });
+  map.addLayer({
+    "id": "polos",
+    "source": "uab",
+    "type": "circle",
+    "paint": {
+      "circle-color": "red",
+       "circle-radius": 5
+    },
+    "filter": ["==", "ipes", "none"]
+  });
+  map.on("click", "ipes", e => {
+    if (!e.features.length) return
+    const feature = e.features[0];
+    const ipes = JSON.parse(feature.properties.ipes); // podemos assumir que um ipes faz parte de só um ipes.
+    const keys = Object.keys(ipes);
+    const ipe = keys.filter((key) => { return ipes[key]})[0];
+    map.setFilter('polos', [
+      'all',
+      ['has', ipe, ['object', ['get', 'ipes']]],
+      ['==', 'polo', ['get', 'type']]
+    ]);
+  });
+  map.on("click", "polos", e => {
+    if (!e.features.length) return
+    const feature = e.features[0];
+    alert(feature.properties.polo);
+  });
+});
+</script>
+
+</body>
+</html>
