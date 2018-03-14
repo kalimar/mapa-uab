@@ -28,18 +28,7 @@ var map = new mapboxgl.Map({
 map.on("load", () => {
   map.addSource('uab', {
     "type": "geojson",
-      // "data": "https://gist.githubusercontent.com/kalimar/87cdada41eab677bf6b5a2e7a6065e75/raw/8ba079456adb4b10bfca87ec3bed403179e3cee8/map.geojson"
     "data": "http://localhost:8080/data.json"
-  });
-  map.addLayer({
-    "id": "ipes",
-    "source": "uab",
-    "type": "circle",
-    "paint": {
-      "circle-color": "blue",
-      "circle-radius": 10
-    },
-    "filter": ["==", "type", "ipes"]
   });
   map.addLayer({
     "id": "polos",
@@ -47,21 +36,28 @@ map.on("load", () => {
     "type": "circle",
     "paint": {
       "circle-color": "red",
-       "circle-radius": 5
+      "circle-radius":5
     },
-    "filter": ["==", "ipes", "none"]
+    "filter": ["==", ['get', "type"], "none"]
+  });
+  map.addLayer({
+    "id": "ipes",
+    "source": "uab",
+    "type": "circle",
+    "paint": {
+      "circle-color": "blue",
+       "circle-radius": 10
+    },
+    "filter": ["==", ["get", "type"], "ipes"]
   });
   map.on("click", "ipes", e => {
     if (!e.features.length) return
     const feature = e.features[0];
-    const ipe = feature.properties.name // podemos assumir que o nome do proprio ipes será o valor de ipes1
-    // const ipes = JSON.parse(feature.properties.ipes); // podemos assumir que um ipes faz parte de só um ipes.
-    // const keys = Object.keys(ipes);
-    // const ipe = keys.filter((key) => { return ipes[key]})[0];
-    map.setFilter('polos', [
+    const ipes = feature.properties.name
+    map.setFilter("polos", [
       'all',
-      ['has', ipe],
-      ['==', 'polo', ['get', 'type']]
+      ['==', ['get', 'ipes'], ipes],
+      ['==', ['get', 'type'], 'polo']
     ]);
   });
   map.on("click", "polos", e => {

@@ -5,7 +5,7 @@
       "properties": {
         "name": "Uberaba",
         "type": "polo",
-        "belo": true
+        "ipes": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -31,7 +31,7 @@
         "marker-symbol": "",
         "type": "polo",
         "name": "preto",
-        "belo": true
+        "ipes": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -45,9 +45,8 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "polo",
-        "belo": true,
         "name": "Araguari",
-        "piaui": true
+        "ipes": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -62,7 +61,7 @@
         "marker-symbol": "",
         "type": "polo",
         "name": "nordeste",
-        "piaui": true
+        "ipes": "piaui"
       },
       "geometry": {
         "type": "Point",
@@ -77,7 +76,7 @@
         "marker-symbol": "",
         "type": "polo",
         "name": "ceara",
-        "piaui": true
+        "ipes": "piaui"
       },
       "geometry": {
         "type": "Point",
@@ -92,8 +91,7 @@
         "marker-symbol": "",
         "type": "polo",
         "name": "flores",
-        "piaui": true,
-        "belo": true
+        "ipes": "piaui"
       },
       "geometry": {
         "type": "Point",
