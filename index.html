@@ -54,12 +54,17 @@ map.on("load", () => {
   map.on("click", "ipes", e => {
     if (!e.features.length) return
     const feature = e.features[0];
-    const ipes = JSON.parse(feature.properties.ipes); // podemos assumir que um ipes faz parte de só um ipes.
-    const keys = Object.keys(ipes);
-    const ipe = keys.filter((key) => { return ipes[key]})[0];
+    const ipe = feature.properties.ipes1 // podemos assumir que o nome do proprio ipes será o valor de ipes1
+    // const ipes = JSON.parse(feature.properties.ipes); // podemos assumir que um ipes faz parte de só um ipes.
+    // const keys = Object.keys(ipes);
+    // const ipe = keys.filter((key) => { return ipes[key]})[0];
+    console.log(ipe)
     map.setFilter('polos', [
       'all',
-      ['has', ipe, ['object', ['get', 'ipes']]],
+      ['any',
+        ['==', ipe, ['get', 'ipes1']],
+        ['==', ipe, ['get', 'ipes2']]
+      ],
       ['==', 'polo', ['get', 'type']]
     ]);
   });

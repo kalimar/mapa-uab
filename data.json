@@ -4,9 +4,7 @@
       "type": "Feature",
       "properties": {
         "type": "polo",
-        "ipes": {
-          "belo": true
-        }
+        "ipes1": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -17,9 +15,7 @@
       "type": "Feature",
       "properties": {
         "type": "ipes",
-        "ipes": {
-          "belo": true
-        }
+        "ipes1": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -33,9 +29,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "polo",
-        "ipes": {
-          "belo": true
-        }
+        "ipes1": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -49,10 +43,8 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "polo",
-        "ipes": {
-          "belo": true,
-          "piaui": true
-        }
+        "ipes1": "belo",
+        "ipes2": "piaui"
       },
       "geometry": {
         "type": "Point",
@@ -66,9 +58,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "polo",
-        "ipes": {
-          "piaui": true
-        }
+        "ipes1": "piaui"
       },
       "geometry": {
         "type": "Point",
@@ -82,9 +72,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "polo",
-        "ipes": {
-          "piaui": true
-        }
+        "ipes1": "piaui"
       },
       "geometry": {
         "type": "Point",
@@ -98,10 +86,8 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "polo",
-        "ipes": {
-          "piaui": true,
-          "belo": true
-        }
+        "ipes1": "piaui",
+        "ipes2": "belo"
       },
       "geometry": {
         "type": "Point",
@@ -115,9 +101,7 @@
         "marker-size": "medium",
         "marker-symbol": "",
         "type": "ipes",
-        "ipes": {
-          "piaui": true
-        }
+        "ipes1": "piaui"
       },
       "geometry": {
         "type": "Point",
